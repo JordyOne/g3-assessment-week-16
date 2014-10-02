@@ -15,8 +15,8 @@ describe 'Accepts a file type' do
     expect(format_data('data/metrics.tsv').first[:container_name]).to eq('container1')
   end
 
-  it "can output the averages" do
-    expect(average_data('data/metrics.tsv')).to eq(0)
+  it "can output the average water level" do
+    expect(average_wl('data/metrics.tsv')).to eq(2.12)
   end
 
 end

@@ -3,20 +3,23 @@ require 'garden_chart'
 require 'csv'
 
 describe 'Accepts a file type' do
-  def read_file(file_name)
-   File.open(file_name, "r") { |file| file.read }
+  it "can read a data source" do
+    averages_by_container('data/metrics.tsv')
   end
 
-  it "Accepts a file type" do
-    expect(read_text('data/metrics.tsv')).to eq(read_file('data/metrics.tsv'))
+  it "can find the highest average temp" do
+    find_highest_average_temp('data/metrics.tsv')
   end
 
-  it "can iterate through file" do
-    expect(format_data('data/metrics.tsv').first[:container_name]).to eq('container1')
+  it "can find the highest average water_level" do
+    find_highest_water_level('data/metrics.tsv')
   end
 
-  it "can output the average water level" do
-    expect(average_wl('data/metrics.tsv')).to eq(2.12)
+  it "can find the averages for all data" do
+    data_averages('data/metrics.tsv')
   end
 
+  it "can find averages for a date range" do
+    data_within_range('data/metrics.tsv', '2013-01-01', '2015-01-01')
+  end
 end
